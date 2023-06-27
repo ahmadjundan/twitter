@@ -4,3 +4,4 @@
 - Untuk meambahkan file baru dapat melakukan "git add <nama file>" contoh
  "git add Tutor.txt"
 hal ini juga berlaku ketika anda menghapus sebuah file, ubah add menjadi rm
+- lalu lakukan git push untuk update perubahan.
