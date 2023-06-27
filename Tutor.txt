@@ -1,0 +1,6 @@
+- Menambahkan Perubahan yang ada untuk disiapkan ke proses commit
+ menggunakan "git add *"
+ lalu lakukan git commit -m "*apa saja*"
+- Untuk meambahkan file baru dapat melakukan "git add <nama file>" contoh
+ "git add Tutor.txt"
+hal ini juga berlaku ketika anda menghapus sebuah file, ubah add menjadi rm
