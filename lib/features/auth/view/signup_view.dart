@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../controller/auth_controller.dart';
 import '../widgets/auth_field.dart';
 import '../../../theme/theme.dart';
 import 'login_view.dart';
 import '../../../constants/ui_constants.dart';
+import 'package:twitter_clone/constants/constants.dart';
 import '../../../common/common.dart';
 
-class SignUpView extends StatefulWidget {
+
+class SignUpView extends ConsumerStatefulWidget {
   const SignUpView({super.key});
   static route() => MaterialPageRoute(
-    builder: (context) => const SignUpView(),
-    );
+        builder: (context) => const SignUpView(),
+      );
 
   @override
-  State<SignUpView> createState() => _SignUpViewState();
+  ConsumerState<SignUpView> createState() => _SignUpViewState();
 } 
-  class _SignUpViewState extends State<SignUpView> {
+  class _SignUpViewState extends ConsumerState<SignUpView> {
     final appBar = UIConstants.appBar();
     final emailController = TextEditingController();
     final passwordController = TextEditingController();
@@ -28,11 +32,22 @@ class SignUpView extends StatefulWidget {
         passwordController.dispose();
     }
 
+    void onSignUp() {
+      ref.read(authControllerProvider.notifier).signUp(
+        email: emailController.text,
+        password: passwordController.text,
+        context: context,
+      );
+    }
+
     @override
     Widget build(BuildContext context) {
+      final isLoading = ref.watch(authControllerProvider);
       return Scaffold(
       appBar: appBar,
-      body: SingleChildScrollView(
+      body: isLoading
+      ? const Loader()
+      : Center (
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Column(
@@ -50,7 +65,7 @@ class SignUpView extends StatefulWidget {
               Align(
                 alignment: Alignment.centerRight,
                 child: RoundedSmallButton(
-                  onTap: () {},
+                  onTap: onSignUp,
                   label: 'Done',
                 ),
               ),

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'features/auth/view/login_view.dart';
+import 'features/auth/view/signup_view.dart';
 import 'constants/ui_constants.dart';
 import 'theme/theme.dart';
 
 void main() {
-  runApp(const ProviderScope(child: MyApp()));
+  runApp(const ProviderScope(
+    child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -18,17 +20,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: AppTheme.theme,
-      home: const LoginView(),
-    );
-  }
-}
-class _LoginViewState extends State<LoginView> {
-  final appBar = UIConstants.appBar();
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: appBar,
+      home: const SignUpView(),
     );
   }
 }
