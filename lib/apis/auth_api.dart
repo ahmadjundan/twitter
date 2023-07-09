@@ -1,22 +1,38 @@
-import 'package:fpdart/fpdart.dart';
+import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart' as model;
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:twitter_clone/core/type_defs.dart';
+import 'package:fpdart/fpdart.dart';
 
-// signup, -> Account
-// user related data -> model.Account
-
-final authAPIProvider = Provider((ref) {
-  final account = ref.watch(appwriteAccountProvider);
-  return AuthAPI(account: account);
-});
+import '../core/core.dart';
 
 abstract class IAuthAPI {
-  FutureEither<model.Account> signUp ({
+  FutureEither<model.Account> signUp({
     required String email,
     required String password,
   });
 }
 
+class AuthAPI implements IAuthAPI {
+  final Account _account;
+  AuthAPI({required Account account}) : _account = account;
 
-
+  @override
+  FutureEither<model.Account> signUp(
+      {required String email, required String password}) async {
+    try {
+      final account = await _account.create(
+        userId: ID.unique(),
+        email: email,
+        password: password,
+      );
+      return right(account);
+    } on AppwriteException catch (e, stackTrace) {
+      return left(
+        Failure(e.message ?? 'Some unexpected error occured', stackTrace),
+      );
+    } catch (e, stackTrace) {
+      return left(
+        Failure(e.toString(), stackTrace),
+      );
+    }
+  }
+}

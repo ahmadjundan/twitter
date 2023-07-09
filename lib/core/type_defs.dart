@@ -2,4 +2,4 @@ import 'package:fpdart/fpdart.dart';
 import 'failure.dart';
 
 typedef FutureEither<T> = Future<Either<Failure, T>>;
-typedef FutureEitherVOid = FutureEither<void>;
+typedef FutureEitherVoid = FutureEither<void>;
