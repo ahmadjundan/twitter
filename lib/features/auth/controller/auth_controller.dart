@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:twitter_clone/apis/auth_api.dart';
 import 'package:twitter_clone/core/utils.dart';
 import 'package:twitter_clone/features/home/view/home_view.dart';
+import '/apis/user_api.dart';
 import 'package:appwrite/models.dart' as model;
 
 final authControllerProvider =
