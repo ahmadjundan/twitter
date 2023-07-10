@@ -6,6 +6,8 @@ import 'package:twitter_clone/constants/assets_constants.dart';
 import 'package:twitter_clone/constants/ui_constants.dart';
 import 'package:twitter_clone/theme/pallete.dart';
 
+import '../../tweet/views/create_tweet_views.dart';
+
 class HomeView extends StatefulWidget {
   static route() => MaterialPageRoute(builder: (context) => const HomeView());
   const HomeView({super.key});
@@ -17,10 +19,15 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   int _page = 0;
   final appBar = UIConstants.appBar();
+
   void onPageChange(int index) {
     setState(() {
       _page = index;
     });
+  }
+
+  void onCreateTweet() {
+    Navigator.push(context, CreateTweetScreen.route());
   }
 
   
@@ -28,6 +35,16 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar,
+      body: IndexedStack(
+        index: _page,
+        children: UIConstants.bottomTabBarPages,
+      ),
+      floatingActionButton: FloatingActionButton(onPressed: onCreateTweet,
+      child: const Icon(Icons.add,
+      color: Pallete.whiteColor,
+      size: 28,),)
+      ,
+      
       bottomNavigationBar: CupertinoTabBar(
         currentIndex: _page,
         onTap: onPageChange,
