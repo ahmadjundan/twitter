@@ -25,6 +25,7 @@ class UserModel {
     required this.bio,
     required this.isTwitterBlue,
   });
+  
 
   UserModel copyWith({
     String? email,

@@ -5,7 +5,7 @@ import '/constants/constants.dart';
 import '/core/core.dart';
 import '/models/user_model.dart';
 
-final userApiProvider = Provider((ref) {
+final userAPIProvider = Provider((ref) {
   return UserAPI(db: ref.watch(appwriteDatabaseProvider));
 });
 
