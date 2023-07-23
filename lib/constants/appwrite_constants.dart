@@ -4,4 +4,5 @@ class AppwriteConstants {
   static const String endPoint = 'https://baas.pasarjepara.com/v1';
 
   static const String usersCollection = '64abafcb6828ec3ceacd';
+  static const String tweetsCollection = '64bc5d2087db9bde0061';
 }
