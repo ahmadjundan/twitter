@@ -23,7 +23,7 @@ class CreateTweetScreen extends ConsumerStatefulWidget {
 
 class _CreateTweetScreenState extends ConsumerState<CreateTweetScreen> {
   final tweetTextController = TextEditingController();
-  List<File>images = [];
+  List<File> images = [];
 
 
 @override
@@ -41,10 +41,8 @@ class _CreateTweetScreenState extends ConsumerState<CreateTweetScreen> {
   }
 
   void onPickImages() async {
-    await pickImages();
-    setState(() {
-      
-    });
+    images = await pickImages();
+    setState(() {});
   }
 
   @override
